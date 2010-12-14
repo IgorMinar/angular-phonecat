@@ -1,0 +1,15 @@
+<!doctype html>
+<html xmlns:ng="http://angularjs.org/">
+<head>
+  <title>Angular App</title>
+</head>
+<body>
+  <ng:include src="$route.current.template" scope="$route.current.scope"></ng:include>
+  
+  <script src="../lib/angular/angular.min.js ng:autobind"></script>
+  <script src="services.js"></script>
+  <script src="controllers.js"></script>
+  <script src="filter.js"></script>
+  <script src="widgets.js"></script>
+</body>
+</html>
