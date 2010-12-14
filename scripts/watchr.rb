@@ -7,7 +7,9 @@
 
 log_file = File.expand_path(File.dirname(__FILE__) + '/../logs/jstd.log')
 
-puts "watcher started. log: #{log_file}"
+`touch #{log_file}`
+
+puts "String watchr... log file: #{log_file}"
 
 watch( '../(app|test\/unit)/' )  do
   `echo "\n\ntest run started @ \`date\`" > #{log_file}`
