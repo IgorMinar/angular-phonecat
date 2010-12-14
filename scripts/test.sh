@@ -7,4 +7,4 @@ if [[ $tests = "" ]]; then
   tests="all"
 fi
 
-java -jar "$base_dir/../lib-test/jstestdriver/JsTestDriver.jar" --tests "$tests"
+java -jar "$base_dir/../test/lib/jstestdriver/JsTestDriver.jar" --tests "$tests"
