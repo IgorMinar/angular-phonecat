@@ -1,10 +1,11 @@
 AppCtrl.$inject = ['$route', '$resource'];
 function AppCtrl($route, $resource) {
-  $route.when('/myctrl1', {template:'partials/p1.html', controller:MyCtrl1});
-  $route.when('/myctrl2', {template:'partials/p2.html', controller:MyCtrl2});
+  $route.when('/phones', {template:'partials/catalog.html', controller:CatalogCtrl});
+  //$route.when('/phones/:phoneId', {template:'partials/detail.html', controller:DetailCtrl});
+  //$route.when('/compare/:phoneIds', {template:'partials/compare.html', controller:CompareCtrl});
 
 
-  this.Data = $resource('');
+  this.phones = $resource('/app/phones.json').query();
 
 
   this.greet = function(name) {
