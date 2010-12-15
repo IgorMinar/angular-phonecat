@@ -19,7 +19,7 @@ angular.service('phoneCatApp', function($route, $location, $resource, $window) {
 angular.service('favorites', function($cookieStore){
   return {
     has: function(phoneId){
-      return ($cookieStore.get('favorites') || {})[phoneId];
+      return !!($cookieStore.get('favorites') || {})[phoneId];
     },
     add:function(phoneId) {
       var favorites = $cookieStore.get('favorites') || {};
