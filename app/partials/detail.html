@@ -1,19 +1,21 @@
-<img ng:src="{{phone.images[selectedImg].medium}}"/>
+<img ng:src="{{phone.images[selectedImg].medium}}" class="phone"/>
+
+<h1>{{phone.name}}</h1>
 
 <p>{{phone.description}}</p>
 
-<ul>
+<ul class="phone-thumbs">
   <li ng:repeat="img in phone.images">
     <a href ng:click="selectImg($index)"><img ng:src="{{img.small}}"/></a>
   </li>
 </ul>
 
-<ul>
+<ul class="specs">
   <li>
     <span>Availability and Networks</span>
     <dl>
       <dt>Availability</dt>
-      <dd>{{phone.availability}}</dd>
+      <dd ng:repeat="availability in phone.availability">{{availability}}</dd>
     </dl>
   </li>
   <li>
@@ -64,7 +66,7 @@
     <span>Size and Weigth</span>
     <dl>
       <dt>Dimensions</dt>
-      <dd>{{phone.sizeAndWeight.dimensions}}</dd>
+      <dd ng:repeat="dim in phone.sizeAndWeight.dimensions">{{dim}}</dd>
       <dt>Weight</dt>
       <dd>{{phone.sizeAndWeight.weight}}</dd>
     </dl>
@@ -106,6 +108,6 @@
   </li>
   <li>
     <span>Additional Features</span>
-    {{phone.additionalFeatures}}
+    <dd>{{phone.additionalFeatures}}</dd>
   </li>
 </ul>
