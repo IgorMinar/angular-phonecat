@@ -14,3 +14,22 @@ angular.service('phoneCatApp', function($route, $location, $resource, $window) {
   this.Phone = $resource('/app/phones/:phoneId.json');
 
 }, {$inject:['$route', '$location', '$resource', '$window'], $creation: 'eager'});
+
+
+angular.service('favorites', function($cookieStore){
+  return {
+    has: function(phoneId){
+      return ($cookieStore.get('favorites') || {})[phoneId];
+    },
+    add:function(phoneId) {
+      var favorites = $cookieStore.get('favorites') || {};
+      favorites[phoneId] = true;
+      $cookieStore.put('favorites', favorites);
+    },
+    remove:function(phoneId) {
+      var favorites = $cookieStore.get('favorites') || {};
+      delete favorites[phoneId];
+      $cookieStore.put('favorites', favorites);
+    }
+  };
+}, {$inject:['$cookieStore']});
