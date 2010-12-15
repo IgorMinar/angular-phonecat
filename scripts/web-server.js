@@ -90,8 +90,6 @@ StaticServlet.prototype.handleRequest = function(req, res) {
     return String.fromCharCode(parseInt(hex, 16));
   });
   var parts = path.split('/');
-  if (parts[parts.length-1].charAt(0) === '.')
-    return self.sendForbidden_(req, res, path);
   fs.stat(path, function(err, stat) {
     if (err)
       return self.sendMissing_(req, res, path);
