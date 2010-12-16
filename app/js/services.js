@@ -11,7 +11,8 @@ angular.service('phoneCatApp', function($route, $location, $resource, $window) {
     }
   });
 
-  this.Phone = $resource('/app/phones/:phoneId.json');
+  var pathBase = $location.path.match(/(.*\/)[^\/]*/)[1];
+  this.Phone = $resource(pathBase + 'phones/:phoneId.json');
 
 }, {$inject:['$route', '$location', '$resource', '$window'], $creation: 'eager'});
 
