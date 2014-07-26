@@ -6,21 +6,18 @@ beforeEach(function(){
   });
 });
 
-
 describe('CatalogCtrl', function(){
-  var rootScope, catalogCtrl, $browser;
+  var catalogCtrl;
 
-  beforeEach(function(){
-    rootScope = angular.scope();
-    $browser = rootScope.$inject('$browser');
+  beforeEach(block(function($scope, $browser){
     $browser.xhr.expectGET('/app/phones/.json').respond([
       {id:'phone1', name:'Phone One', imageUrl:'http://img/url', snippet:'phone one snippet'},
       {id:'phone2', name:'Phone Two', imageUrl:'http://img/url', snippet:'phone two snippet'}
     ]);
-    
-    catalogCtrl = rootScope.$new(CatalogCtrl);
+
+    catalogCtrl = $scope.$new(CatalogCtrl);
     $browser.xhr.flush();
-  });
+  }));
 
 
   it('should load phones', function() {
@@ -29,27 +26,25 @@ describe('CatalogCtrl', function(){
       {id: 'phone2', name: 'Phone Two', imageUrl: 'http://img/url', snippet: 'phone two snippet'}
     ]);
   });
-  
+
 });
 
 
 describe('DetailCtrl', function() {
-  var rootScope, detailCtrl, $browser;
+  var detailCtrl;
 
-  beforeEach(function(){
-    rootScope = angular.scope();
-    rootScope.params = {phoneId: 'phone1'};
+  beforeEach(block(function($scope, $browser){
+    $scope.params = {phoneId: 'phone1'};
 
-    $browser = rootScope.$inject('$browser');
     $browser.xhr.expectGET('/app/phones/phone1.json').respond({
       id: 'phone1',
       name: 'Phone One',
       description: 'Shiny phone with nice display.'
     });
 
-    detailCtrl = rootScope.$new(DetailCtrl);
+    detailCtrl = $scope.$new(DetailCtrl);
     $browser.xhr.flush();
-  });
+  }));
 
 
   it('should load phone', function() {
